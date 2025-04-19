@@ -1,53 +1,56 @@
 library(shiny)
+library(shinyjs)
 
 rnaseqVisApp <- function(debug = FALSE, ...) {
-  ui <- fluidPage(
-    theme = "flatly.bootstrap.min.css",
-    navbarPage(
-      "rnaseqVis",
-      tabPanel(
-        "Input",
-        sidebarLayout(
-          sidebarPanel(
-            uploadRNASeqInput("upload"),
-            SubsetByGeneIDsInput("subset"),
-            transformInput("transform"),
-            clusterInput("cluster"),
-            width = 3
-          ),
-          mainPanel(
-            SubsetByGeneIDsOutput("subset"),
-            uploadRNASeqOutput("upload"),
-          )
+  ui <- bslib::page_navbar(
+    title = "rnaseqVis",
+    shinyjs::useShinyjs(),
+    theme = bslib::bs_theme(bootswatch = "cosmo"),
+    tabPanel(
+      "Input",
+      sidebarLayout(
+        sidebarPanel(
+          shinyModules::uploadRNASeqInput("upload"),
+          SubsetByGeneIDsInput("subset"),
+          width = 3
+        ),
+        mainPanel(
+          SubsetByGeneIDsOutput("subset"),
+          shinyModules::uploadRNASeqOutput("upload"),
         )
+      )
+    ),
+    tabPanel(
+      "Heatmap",
+      fluidRow(
+        transformInput("transform"),
+        clusterInput("cluster"),
       ),
-      tabPanel(
-        "Heatmap",
-        heatmapOutput("hmap")
-      ),
-      tabPanel(
-        "Count Plot",
-        sidebarLayout(
-          sidebarPanel(
-            countPlotInput('countPlot'),
-            width = 4
+      heatmapOutput("hmap")
+    ),
+    tabPanel(
+      "Count Plot",
+      sidebarLayout(
+        sidebarPanel(
+          shinyModules::countPlotInput('countPlot'),
+          width = 3
+        ),
+        mainPanel(
+          fluidRow(
+            shinyModules::countPlotOutput('countPlot'),
           ),
-          mainPanel(
-            fluidRow(
-              countPlotOutput('countPlot'),
-            ),
-            width = 8
-          )
+          width = 9
         )
-      ),
-      tabPanel("Help", includeMarkdown("README.md"))
-    )
+      )
+    ),
+    tabPanel("Help", includeMarkdown("README.md"))
   )
   server <- function(input, output, session) {
     # increase max upload size to 200 MB
     options(shiny.maxRequestSize = 200 * 1024 ^ 2)
     
-    data_list <- uploadRNASeqServer("upload", debug)
+    data_list <- shinyModules::uploadRNASeqServer("upload", debug = debug)
+
     counts_subset <- SubsetByGeneIDsServer(
       "subset", 
       "counts" = reactive(data_list$counts()),
@@ -73,7 +76,7 @@ rnaseqVisApp <- function(debug = FALSE, ...) {
       debug = debug
     )
     
-    countPlotServer(
+    shinyModules::countPlotServer(
       "countPlot", counts = reactive(counts_subset$counts()), 
       sample_info = reactive(data_list$sample_info()),
       gene_metadata = reactive(counts_subset$gene_metadata_subset()),
