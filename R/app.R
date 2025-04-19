@@ -4,7 +4,7 @@ library(shinyjs)
 rnaseqVisApp <- function(debug = FALSE, ...) {
   ui <- bslib::page_navbar(
     title = "rnaseqVis",
-    shinyjs::useShinyjs(),
+    header = shinyjs::useShinyjs(),
     theme = bslib::bs_theme(bootswatch = "cosmo"),
     tabPanel(
       "Input",
