@@ -11,10 +11,10 @@ SubsetByGeneIDsOutput(id)
 \code{\link[=SubsetByGeneIDsServer]{SubsetByGeneIDsServer()}} function.}
 }
 \value{
-a \code{\link[htmltools:tagList]{htmltools::tagList()}} containing a \code{\link[shinyBS:bsAlert]{shinyBS::bsAlert()}} anchor point
+a \code{\link[htmltools:tagList]{htmltools::tagList()}} containing a \code{\link[shiny:htmlOutput]{shiny::uiOutput()}} anchor point
 }
 \description{
-\code{SubsetByGeneIDsOutput()} creates a \code{\link[shinyBS:bsAlert]{shinyBS::bsAlert()}} anchor point to
+\code{SubsetByGeneIDsOutput()} creates a \code{\link[shiny:htmlOutput]{shiny::uiOutput()}} to
 allow alerting the user if any of the supplied gene IDs are not found in
 the data
 }

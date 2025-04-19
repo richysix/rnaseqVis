@@ -22,14 +22,14 @@ SubsetByGeneIDsInput <- function(id) {
 
 #' Create UI components to upload a file to use to subset the data
 #' 
-#' `SubsetByGeneIDsOutput()` creates a [shinyBS::bsAlert()] anchor point to
+#' `SubsetByGeneIDsOutput()` creates a [shiny::uiOutput()] to
 #' allow alerting the user if any of the supplied gene IDs are not found in
 #' the data
 #' 
 #' @param id namespace id for the UI components. Must match the id provided to the 
 #' [SubsetByGeneIDsServer()] function.
 #' 
-#' @returns a [htmltools::tagList()] containing a [shinyBS::bsAlert()] anchor point
+#' @returns a [htmltools::tagList()] containing a [shiny::uiOutput()] anchor point
 #' 
 #' @examples 
 #' SubsetByGeneIDsOutput("geneIds")
@@ -37,7 +37,7 @@ SubsetByGeneIDsInput <- function(id) {
 #' @export
 SubsetByGeneIDsOutput <- function(id) {
   tagList(
-    shinyBS::bsAlert(NS(id, "subsetAlert"))
+    uiOutput(NS(id, "subsetAlert")),
   )
 }
 
@@ -112,31 +112,35 @@ SubsetByGeneIDsServer <- function(id, counts = NULL, gene_metadata = NULL, debug
         )
       } else {
         # close any open alerts
-        shinyBS::closeAlert(session, "all_genes_missing")
-        shinyBS::closeAlert(session, "genes_missing")
+        shinyjs::runjs(glue::glue('$("#{id}-all_genes_missing button").click()'))
+        shinyjs::runjs(glue::glue('$("#{id}-genes_missing button").click()'))
         # find any genes in gene_ids that don't exist in counts
         # first check whether none of them exist
         if (all(!(gene_ids() %in% gene_metadata()$GeneID))) {
           missing_genes <- setdiff(gene_ids(), gene_metadata()$GeneID)
-          msg <- paste("<b>None</b> of the supplied gene IDs were found in the data:",
-                       paste0(missing_genes, collapse = ", "),
-                       "The original data has been returned",
-                       sep = "<br>")
-          if (debug) warning(msg)
-          shinyBS::createAlert(session, anchorId = NS(id, "subsetAlert"),
-                               alertId = "all_genes_missing", title = "Gene IDs missing from counts",
-                               content = msg, append = FALSE, style = "danger")
+          output$subsetAlert <- renderUI(
+            shinyWidgets::alert(
+              tags$h4("Gene IDs missing from counts"),
+              tags$b("None"), "of the supplied gene IDs were found in the data:",
+              tags$br(), paste0(missing_genes, collapse = ", "),
+              tags$br(), "The original data has been returned",
+              status = "danger",
+              dismissible = TRUE
+            )
+          )
           selected_rows <- rep(TRUE, length(gene_metadata()$GeneID))
         } else if (any(!(gene_ids() %in% gene_metadata()$GeneID))) {
           # create alert
           missing_genes <- setdiff(gene_ids(), gene_metadata()$GeneID)
-          msg <- paste("The following gene IDs where not found in the data to subset:",
-                       paste0(missing_genes, collapse = ", "),
-                       sep = "<br>")
-          if (debug) warning(msg)
-          shinyBS::createAlert(session, anchorId = NS(id, "subsetAlert"),
-                               alertId = "genes_missing", title = "Gene IDs missing from counts",
-                               content = msg, append = FALSE, style = "warning")
+          output$subsetAlert <- renderUI(
+            shinyWidgets::alert(
+              tags$h4("Gene IDs missing from counts"),
+              "The following gene IDs where not found in the data to subset:",
+              tags$br(), paste0(missing_genes, collapse = ", "),
+              status = "danger",
+              dismissible = TRUE
+            )
+          )
           selected_rows <- gene_metadata()$GeneID %in% gene_ids()
         } else {
           selected_rows <- gene_metadata()$GeneID %in% gene_ids()
@@ -214,8 +218,8 @@ SubsetByGeneIDsApp <- function(debug = FALSE) {
   
   server <- function(input, output, session) {
     data_list <- SubsetByGeneIDsServer("geneIds", 
-                                       "counts" = reactive(rnaseqVis::counts),
-                                       "gene_metadata" = reactive(rnaseqVis::gene_metadata),
+                                       "counts" = reactive(rnaseqtools::counts),
+                                       "gene_metadata" = reactive(rnaseqtools::gene_metadata),
                                        "debug" = debug)
     output$counts <- renderTable(data_list$counts_subset()[1:5,1:6])
     output$metadata <- renderTable(data_list$gene_metadata_subset()[1:5,])
