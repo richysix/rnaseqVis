@@ -160,7 +160,7 @@
         "Package": "BiocParallel",
         "Type": "Package",
         "Title": "Bioconductor facilities for parallel evaluation",
-        "Version": "1.40.1",
+        "Version": "1.40.2",
         "Authors@R": "c(\n    person(\"Martin\", \"Morgan\",\n        email = \"mtmorgan.bioc@gmail.com\",\n        role=c(\"aut\", \"cre\")),\n    person(\"Jiefei\", \"Wang\", role = \"aut\"),\n    person(\"Valerie\", \"Obenchain\", role=\"aut\"),\n    person(\"Michel\", \"Lang\", email=\"michellang@gmail.com\", role=\"aut\"),\n    person(\"Ryan\", \"Thompson\", email=\"rct@thompsonclan.org\", role=\"aut\"),\n    person(\"Nitesh\", \"Turaga\", role=\"aut\"),\n    person(\"Aaron\", \"Lun\", role = \"ctb\"),\n    person(\"Henrik\", \"Bengtsson\", role = \"ctb\"),\n    person(\"Madelyn\", \"Carlson\", role = \"ctb\",\n        comment = \"Translated 'Random Numbers' vignette from Sweave to RMarkdown / HTML.\"\n    ),\n    person(\"Phylis\", \"Atieno\", role = \"ctb\",\n        comment = \"Translated 'Introduction to BiocParallel' vignette from Sweave to Rmarkdown / HTML.\"\n    ),\n    person(\n        \"Sergio\", \"Oller\", role = \"ctb\",\n        comment = c(\n            \"Improved bpmapply() efficiency.\",\n            \"ORCID\" = \"0000-0002-8994-1549\"\n        )\n    ))",
         "Description": "This package provides modified versions and novel\n    implementation of functions for parallel evaluation, tailored to\n    use with Bioconductor objects.",
         "URL": "https://github.com/Bioconductor/BiocParallel",
