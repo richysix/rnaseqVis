@@ -1,6 +1,6 @@
 Package: rnaseqVis
 Title: Viewer for RNASeq gene expression data
-Version: 0.0.2.1
+Version: 0.0.2.2
 Authors@R: 
     person("Richard", "White", , "rich@buschlab.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1842-412X"))
