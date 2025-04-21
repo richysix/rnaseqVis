@@ -17,6 +17,6 @@ Scale count according to the maximum value
 }
 \examples{
 
-max_scale(rnaseqVis::counts)
+max_scale(rnaseqtools::counts)
 
 }

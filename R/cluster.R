@@ -43,7 +43,7 @@ clusterInput <- function(id) {
 #'
 #' @examples
 #' 
-#' clusterServer("rnaseqData", counts = reactive(rnaseqVis::counts[1:10,1:5]))
+#' clusterServer("rnaseqData", counts = reactive(rnaseqtools::counts[1:10,1:5]))
 #' 
 clusterServer <- function(id, counts = NULL, gene_metadata = NULL, debug = FALSE) {
   stopifnot(is.reactive(counts))
@@ -240,9 +240,9 @@ clusterApp <- function() {
   )
   
   server <- function(input, output, session) {
-    test_counts <- rnaseqVis::counts[1:10, 1:5]
+    test_counts <- rnaseqtools::counts[1:10, 1:5]
     counts_clustered <- clusterServer("cluster", counts = reactive(test_counts),
-                                      gene_metadata = reactive(rnaseqVis::gene_metadata[1:10,]))
+                                      gene_metadata = reactive(rnaseqtools::gene_metadata[1:10,]))
     output$rownames <- renderText(rownames(counts_clustered$counts()))
     output$original_counts <- renderTable(test_counts)
     output$clustered_counts <- renderTable(counts_clustered$counts())

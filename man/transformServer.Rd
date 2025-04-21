@@ -25,6 +25,6 @@ based on the radio buttons selection
 }
 \examples{
 
-transformServer("rnaseqData", counts = reactive(rnaseqVis::counts[1:10,1:5]))
+transformServer("rnaseqData", counts = reactive(rnaseqtools::counts[1:10,1:5]))
 
 }

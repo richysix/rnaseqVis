@@ -168,25 +168,19 @@
         "biocViews": "Infrastructure",
         "License": "GPL-2 | GPL-3",
         "SystemRequirements": "C++11",
-        "Depends": "methods, R (>= 4.1.0)",
+        "Depends": "methods, R (>= 3.5.0)",
         "Imports": "stats, utils, futile.logger, parallel, snow, codetools",
         "Suggests": "BiocGenerics, tools, foreach, BBmisc, doParallel,\nGenomicRanges, RNAseqData.HNRNPC.bam.chr14,\nTxDb.Hsapiens.UCSC.hg19.knownGene, VariantAnnotation,\nRsamtools, GenomicAlignments, ShortRead, RUnit, BiocStyle,\nknitr, batchtools, data.table",
         "Enhances": "Rmpi",
         "Collate": "AllGenerics.R DeveloperInterface.R prototype.R bploop.R\nErrorHandling.R log.R bpbackend-methods.R bpisup-methods.R\nbplapply-methods.R bpiterate-methods.R bpstart-methods.R\nbpstop-methods.R BiocParallelParam-class.R bpmapply-methods.R\nbpschedule-methods.R bpvec-methods.R bpvectorize-methods.R\nbpworkers-methods.R bpaggregate-methods.R bpvalidate.R\nSnowParam-class.R MulticoreParam-class.R\nTransientMulticoreParam-class.R register.R SerialParam-class.R\nDoparParam-class.R SnowParam-utils.R BatchtoolsParam-class.R\nprogress.R ipcmutex.R worker-number.R utilities.R rng.R\nbpinit.R reducer.R worker.R bpoptions.R cpp11.R\nBiocParallel-defunct.R",
-        "LinkingTo": "BH (>= 1.87.0), cpp11",
+        "LinkingTo": "BH, cpp11",
         "VignetteBuilder": "knitr",
         "RoxygenNote": "7.1.2",
-        "git_url": "https://git.bioconductor.org/packages/BiocParallel",
-        "git_branch": "RELEASE_3_20",
-        "git_last_commit": "db5b145",
-        "git_last_commit_date": "2025-03-30",
-        "Repository": "Bioconductor 3.20",
-        "Date/Publication": "2025-03-31",
         "NeedsCompilation": "yes",
-        "Packaged": "2025-03-31 21:16:38 UTC; biocbuild",
+        "Packaged": "2025-04-08 20:38:19 UTC; biocbuild",
         "Author": "Martin Morgan [aut, cre],\n  Jiefei Wang [aut],\n  Valerie Obenchain [aut],\n  Michel Lang [aut],\n  Ryan Thompson [aut],\n  Nitesh Turaga [aut],\n  Aaron Lun [ctb],\n  Henrik Bengtsson [ctb],\n  Madelyn Carlson [ctb] (Translated 'Random Numbers' vignette from Sweave\n    to RMarkdown / HTML.),\n  Phylis Atieno [ctb] (Translated 'Introduction to BiocParallel' vignette\n    from Sweave to Rmarkdown / HTML.),\n  Sergio Oller [ctb] (Improved bpmapply() efficiency.,\n    <https://orcid.org/0000-0002-8994-1549>)",
         "Maintainer": "Martin Morgan <mtmorgan.bioc@gmail.com>",
-        "Built": "R 4.4.3; x86_64-apple-darwin20; 2025-04-01 15:29:14 UTC; unix"
+        "Built": "R 4.4.3; x86_64-apple-darwin20; 2025-04-08 20:39:12 UTC; unix"
       }
     },
     "BiocVersion": {
@@ -2865,27 +2859,6 @@
         "Archs": "rlang.so.dSYM"
       }
     },
-    "rnaseqVis": {
-      "Source": "github",
-      "Repository": null,
-      "description": {
-        "Package": "rnaseqVis",
-        "Title": "Viewer for RNASeq gene expression data",
-        "Version": "0.0.2.0",
-        "Authors@R": "person(\"Richard\", \"White\", , \"rich@buschlab.org\", role = c(\"aut\", \"cre\"),\ncomment = c(ORCID = \"0000-0003-1842-412X\"))",
-        "Description": "What the package does (one paragraph).",
-        "License": "GPL-3",
-        "Encoding": "UTF-8",
-        "Roxygen": "list(markdown = TRUE)",
-        "RoxygenNote": "7.3.2",
-        "Imports": "bslib,\nggplot2,\nreadr,\nrnaseqtools,\nshiny,\nshinyjs,\nshinyModules (>= 0.0.1.4)",
-        "Depends": "R (>= 2.10)",
-        "LazyData": "true",
-        "Suggests": "testthat (>= 3.0.0)",
-        "Config/testthat/edition": "3",
-        "Remotes": "richysix/shinyModules"
-      }
-    },
     "rnaseqtools": {
       "Source": "github",
       "Repository": null,
@@ -3648,10 +3621,10 @@
       "checksum": "56874ae7a6456d827913f716638c1e90"
     },
     "cluster.R": {
-      "checksum": "551775d6a145081dfcb0be3b72690a43"
+      "checksum": "fc22f79f8088614992809ecebe4aba25"
     },
     "heatmap.R": {
-      "checksum": "a3057cf84515fd01a34ce7cd25727502"
+      "checksum": "5cfaf4d4203b26df19581e0161d2bee5"
     },
     "rnaseqVis-package.R": {
       "checksum": "d063aa33eb5a1e6cf189a862e04806d4"
@@ -3660,7 +3633,7 @@
       "checksum": "f9c18a50439c4b3e91e6019deccaa564"
     },
     "transform.R": {
-      "checksum": "de1ca8f82d0000de7532a68cda08d170"
+      "checksum": "40a8d87c92c86c459e815b2c81c9dbce"
     }
   },
   "users": null

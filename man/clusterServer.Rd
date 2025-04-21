@@ -26,6 +26,6 @@ or both
 }
 \examples{
 
-clusterServer("rnaseqData", counts = reactive(rnaseqVis::counts[1:10,1:5]))
+clusterServer("rnaseqData", counts = reactive(rnaseqtools::counts[1:10,1:5]))
 
 }

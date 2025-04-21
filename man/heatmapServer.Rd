@@ -39,6 +39,6 @@ from the supplied count matrix, sample info and gene metadata
 }
 \examples{
 
-heatmapServer("rnaseqData", counts = reactive(rnaseqVis::counts[1:10,1:5]))
+heatmapServer("rnaseqData", counts = reactive(rnaseqtools::counts[1:10,1:5]))
 
 }

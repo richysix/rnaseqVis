@@ -45,7 +45,7 @@ transformInput <- function(id) {
 #'
 #' @examples
 #' 
-#' transformServer("rnaseqData", counts = reactive(rnaseqVis::counts[1:10,1:5]))
+#' transformServer("rnaseqData", counts = reactive(rnaseqtools::counts[1:10,1:5]))
 #' 
 transformServer <- function(id, counts = NULL) {
   stopifnot(is.reactive(counts))
@@ -78,9 +78,9 @@ transformServer <- function(id, counts = NULL) {
 #'
 #' @examples
 #' 
-#' transform_counts(rnaseqVis::counts, "raw")
+#' transform_counts(rnaseqtools::counts, "raw")
 #' 
-#' transform_counts(rnaseqVis::counts, "zscore")
+#' transform_counts(rnaseqtools::counts, "zscore")
 #' 
 transform_counts <- function(counts, transform_func) {
   transformed_counts <- switch(
@@ -102,7 +102,7 @@ transform_counts <- function(counts, transform_func) {
 #'
 #' @examples
 #' 
-#' max_scale(rnaseqVis::counts)
+#' max_scale(rnaseqtools::counts)
 #' 
 max_scale <- function(counts) {
   geneMaxCounts <- apply(counts, 1, max)
@@ -144,7 +144,7 @@ transformApp <- function() {
   )
   
   server <- function(input, output, session) {
-    test_counts <- rnaseqVis::counts[1:10, 1:5]
+    test_counts <- rnaseqtools::counts[1:10, 1:5]
     counts_transformed <- transformServer("transform", counts = reactive(test_counts))
     output$func <- renderText(counts_transformed$transform())
     output$transformed_counts <- renderTable(counts_transformed$counts())

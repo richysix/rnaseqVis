@@ -41,7 +41,7 @@ heatmapOutput <- function(id) {
 #'
 #' @examples
 #' 
-#' heatmapServer("rnaseqData", counts = reactive(rnaseqVis::counts[1:10,1:5]))
+#' heatmapServer("rnaseqData", counts = reactive(rnaseqtools::counts[1:10,1:5]))
 #' 
 heatmapServer <- function(id, counts = NULL, sample_info = NULL,
                           gene_metadata = NULL, transform = NULL,
@@ -76,7 +76,7 @@ heatmapServer <- function(id, counts = NULL, sample_info = NULL,
       plot <- biovisr::matrix_heatmap(counts, xaxis_labels = sample_names, yaxis_labels = gene_names)
       if (transform() == 'zscore') {
         plot <- plot +
-          ggplot2::scale_fill_distiller(type= 'div', palette = "RdBu")
+          ggplot2::scale_fill_distiller(type = 'div', palette = "RdBu")
       }
 
       return(plot)
@@ -150,9 +150,9 @@ heatmapApp <- function() {
   )
 
   server <- function(input, output, session) {
-    heatmapServer("heatmap", counts = reactive(rnaseqVis::counts[1:10, 1:5]),
-                  sample_info = reactive(rnaseqVis::sampleInfo[1:5,]),
-                  gene_metadata = reactive(rnaseqVis::gene_metadata[1:10,]),
+    heatmapServer("heatmap", counts = reactive(rnaseqtools::counts[1:10, 1:5]),
+                  sample_info = reactive(rnaseqtools::sampleInfo[1:5,]),
+                  gene_metadata = reactive(rnaseqtools::gene_metadata[1:10,]),
                   transform = reactive(input$transform_func),
                   debug = TRUE)
   }

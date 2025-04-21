@@ -10,18 +10,25 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports: 
+    biovisr (>= 0.1.9),
     bslib,
+    genefilter,
     ggplot2,
+    glue,
+    htmltools,
     readr,
     rnaseqtools,
     shiny,
     shinyjs,
-    shinyModules (>= 0.0.1.4)
+    shinyModules (>= 0.0.1.4),
+    shinyWidgets,
+    tibble
 Depends: 
     R (>= 2.10)
 LazyData: true
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Remotes:  
-    richysix/shinyModules
+Remotes: 
+    richysix/shinyModules,
+    richysix/biovisr

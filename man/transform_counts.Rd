@@ -19,8 +19,8 @@ Transform counts with the supplied function name
 }
 \examples{
 
-transform_counts(rnaseqVis::counts, "raw")
+transform_counts(rnaseqtools::counts, "raw")
 
-transform_counts(rnaseqVis::counts, "zscore")
+transform_counts(rnaseqtools::counts, "zscore")
 
 }
