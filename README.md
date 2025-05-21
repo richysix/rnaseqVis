@@ -1,5 +1,6 @@
 # rnaseqVis
-Update to [geneExpr](https://github.com/richysix/geneExpr) using Shiny modules
+
+[rnaseqVis app on posit Connect Cloud](https://019658d9-521a-3d9f-fd3f-8d5cd9302c19.share.connect.posit.cloud)
 
 ## Instructions
 
